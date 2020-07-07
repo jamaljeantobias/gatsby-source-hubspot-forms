@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: "gatsby-source-hubspot-forms",
       options: {
-        apKey: "YOUR_HUBSPOT_API_KEY",
+        apiKey: "YOUR_HUBSPOT_API_KEY",
       },
     },
   ],
