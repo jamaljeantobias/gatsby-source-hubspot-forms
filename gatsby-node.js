@@ -34,7 +34,7 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
         children: [],
         parent: `__SOURCE__`,
         internal: {
-          type: `hubspotForms`,
+          type: `HubspotForm`,
         },
       }
       const contentDigest = crypto
