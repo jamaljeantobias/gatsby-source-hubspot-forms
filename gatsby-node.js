@@ -37,6 +37,7 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
           type: `HubspotForm`,
         },
       }
+      console.log(` ${index + 1} :Creating Hubspot Form  ${item.name}`)
       const contentDigest = crypto
         .createHash(`md5`)
         .update(JSON.stringify(formNode))
