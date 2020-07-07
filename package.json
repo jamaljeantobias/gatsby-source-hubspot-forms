@@ -14,12 +14,7 @@
     "gatsby": ">=2"
   },
   "dependencies": {
-
- "axois": "0.0.1-security"
-
+    "axois": "0.0.1-security"
   },
-  "version": "2.1.0"
+  "version": "2.1.1"
 }
-
-
-
