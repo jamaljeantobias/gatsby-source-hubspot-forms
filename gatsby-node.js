@@ -49,12 +49,3 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
     throw new Error(err)
   }
 }
-
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  if (stage === "build-html") {
-    config.loader("null", {
-      test: /webfontloader/,
-      loader: "null-loader",
-    })
-  }
-}
