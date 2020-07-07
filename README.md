@@ -1,6 +1,6 @@
 # gatsby-source-hubspot-forms
 
-This source plugin for Gatsby will provide you with a skeleton of your created hubspot forms in graphql queries
+This source plugin for Gatsby will provide you with the associated fields for each applicable form created in Hubspot.
 
 ## Installation
 
