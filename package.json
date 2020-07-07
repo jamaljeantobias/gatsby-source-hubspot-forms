@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-hubspot-forms",
   "description": "Gatsby source plugin",
-  "repository": "https://github.com/lewisvrobinson/gatsby-source-hubspot.git",
+  "repository": "https://github.com/jamaljeantobias/gatsby-source-hubspot-forms",
   "author": "Jamal Jean <jamal.tobias@gmail.com>",
   "keywords": [
     "gatsby",
