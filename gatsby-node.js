@@ -18,7 +18,7 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
 
     response.map((item, index) => {
       const formNode = {
-        id: item.portalId.toString(),
+        id: item.guid,
         portalId: item.portalId.toString(),
         guid: item.guid,
         name: item.name,
