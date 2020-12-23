@@ -31,6 +31,10 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
         notifyRecipients: item.notifyRecipients,
         leadNurturingCampaignId: item.leadNurturingCampaignId,
         formFieldGroups: item.formFieldGroups,
+        metaData: item.metaData,
+        inlineMessage: item.inlineMessage,
+        isPublished: item.isPublished,  
+        thankYouMessageJson: item.thankYouMessageJson,                
         children: [],
         parent: `__SOURCE__`,
         internal: {
