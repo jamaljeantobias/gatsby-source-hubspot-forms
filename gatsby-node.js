@@ -6,11 +6,11 @@ const axios = require("axios")
 const crypto = require("crypto")
 var fs = require("fs")
 
-exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
+exports.sourceNodes = async ({ actions }, configOptions) => {
   try {
     const API_KEY = configOptions.apiKey
     if (!API_KEY) throw new Error("No Hubspot API key provided")
-    const { createNode } = boundActionCreators
+    const { createNode } = actions
     const fetchAllFormNodes = await axios.get(
       `https://api.hubapi.com/forms/v2/forms?hapikey=${API_KEY}`
     )
@@ -33,8 +33,8 @@ exports.sourceNodes = async ({ boundActionCreators }, configOptions) => {
         formFieldGroups: item.formFieldGroups,
         metaData: item.metaData,
         inlineMessage: item.inlineMessage,
-        isPublished: item.isPublished,  
-        thankYouMessageJson: item.thankYouMessageJson,                
+        isPublished: item.isPublished,
+        thankYouMessageJson: item.thankYouMessageJson,
         children: [],
         parent: `__SOURCE__`,
         internal: {
