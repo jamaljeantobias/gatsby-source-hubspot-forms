@@ -13,8 +13,5 @@
   "peerDependencies": {
     "gatsby": ">=3"
   },
-  "dependencies": {
-    "axois": "0.0.1-security"
-  },
   "version": "3.0.0"
 }
