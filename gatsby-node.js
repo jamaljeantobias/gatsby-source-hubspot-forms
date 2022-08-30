@@ -7,12 +7,13 @@ const crypto = require("crypto")
 var fs = require("fs")
 
 exports.sourceNodes = async ({ actions }, configOptions) => {
+  const API_KEY = configOptions.apiKey
+  if (!API_KEY) throw new Error("No Hubspot API key provided")
   try {
-    const API_KEY = configOptions.apiKey
-    if (!API_KEY) throw new Error("No Hubspot API key provided")
     const { createNode } = actions
     const fetchAllFormNodes = await axios.get(
-      `https://api.hubapi.com/forms/v2/forms?hapikey=${API_KEY}`
+      `https://api.hubapi.com/forms/v2/forms`,
+        {headers: {Authorization: `Bearer ${API_KEY}`}}
     )
     const response = await fetchAllFormNodes.data
 
@@ -49,7 +50,6 @@ exports.sourceNodes = async ({ actions }, configOptions) => {
       formNode.internal.contentDigest = contentDigest
       createNode(formNode)
     })
-    return
   } catch (err) {
     throw new Error(err)
   }
