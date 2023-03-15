@@ -20,29 +20,14 @@ exports.sourceNodes = async ({ actions }, configOptions) => {
     response.map((item, index) => {
       const formNode = {
         id: item.guid,
-        portalId: item.portalId.toString(),
-        guid: item.guid,
-        name: item.name,
-        action: item.action,
-        method: item.method,
-        cssClass: item.cssClass,
-        redirect: item.redirect,
-        submitText: item.submitText,
-        followUpId: item.followUpId,
-        notifyRecipients: item.notifyRecipients,
-        leadNurturingCampaignId: item.leadNurturingCampaignId,
-        formFieldGroups: item.formFieldGroups,
-        metaData: item.metaData,
-        inlineMessage: item.inlineMessage,
-        isPublished: item.isPublished,
-        thankYouMessageJson: item.thankYouMessageJson,
         children: [],
         parent: `__SOURCE__`,
         internal: {
           type: `HubspotForm`,
         },
+        ...item
       }
-      console.log(` ${index + 1} :Creating Hubspot Form  ${item.name}`)
+      console.log(`Creating Hubspot Form: ${item.name}`)
       const contentDigest = crypto
         .createHash(`md5`)
         .update(JSON.stringify(formNode))
@@ -53,4 +38,65 @@ exports.sourceNodes = async ({ actions }, configOptions) => {
   } catch (err) {
     throw new Error(err)
   }
+}
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type HubspotFormFieldValidation {
+      name: String
+      message: String
+      data: String
+      useDefaultBlockList: Boolean
+      blockedEmailAddresses: [String]
+    }
+    
+    type HubspotFormField {
+      name: String!
+      label: String!
+      type: String!
+      fieldType: String!
+      description: String
+      groupName: String
+      displayOrder: Int
+      required: Boolean
+      selectedOptions: [String]
+      options: [String]
+      validation: HubspotFormFieldValidation
+      enabled: Boolean,
+      hidden: Boolean,
+      defaultValue: String
+      isSmartField: Boolean
+      unselectedLabel: String
+      placeholder: String
+      # dependentFieldFilters: array of some kind
+      labelHidden: Boolean
+    }
+    
+    type HubspotFormFieldGroup {
+      fields: [HubspotFormField]
+      default: Boolean
+      isSmartGroup: Boolean
+      # richText
+    }
+    
+    type HubspotForm implements Node {
+      id: ID!
+      portalId: Int!
+      guid: String!
+      name: String!
+      action: String
+      method: String
+      cssClass: String
+      redirect: String
+      submitText: String
+      followUpId: String
+      notifyRecipients: String
+      leadNurturingCampaignId: String
+      formFieldGroups: [HubspotFormFieldGroup]
+      inlineMessage: String
+      isPublished: Boolean
+    }
+  `
+  createTypes(typeDefs)
 }
