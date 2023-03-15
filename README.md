@@ -34,7 +34,7 @@ Here’s an example query to load 10 forms:
 
 ```gql
 query HubSpotFormQuery {
-  allHubspotForms(limit: 10) {
+  allHubspotForm(limit: 10) {
     edges {
       node {
         portalId
