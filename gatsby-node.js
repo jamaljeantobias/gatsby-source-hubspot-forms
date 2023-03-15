@@ -20,29 +20,14 @@ exports.sourceNodes = async ({ actions }, configOptions) => {
     response.map((item, index) => {
       const formNode = {
         id: item.guid,
-        portalId: item.portalId.toString(),
-        guid: item.guid,
-        name: item.name,
-        action: item.action,
-        method: item.method,
-        cssClass: item.cssClass,
-        redirect: item.redirect,
-        submitText: item.submitText,
-        followUpId: item.followUpId,
-        notifyRecipients: item.notifyRecipients,
-        leadNurturingCampaignId: item.leadNurturingCampaignId,
-        formFieldGroups: item.formFieldGroups,
-        metaData: item.metaData,
-        inlineMessage: item.inlineMessage,
-        isPublished: item.isPublished,
-        thankYouMessageJson: item.thankYouMessageJson,
         children: [],
         parent: `__SOURCE__`,
         internal: {
           type: `HubspotForm`,
         },
+        ...item
       }
-      console.log(` ${index + 1} :Creating Hubspot Form  ${item.name}`)
+      console.log(`Creating Hubspot Form: ${item.name}`)
       const contentDigest = crypto
         .createHash(`md5`)
         .update(JSON.stringify(formNode))
